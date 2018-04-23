@@ -1,5 +1,6 @@
 package com.View;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +8,10 @@ import com.Button.PongButton;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -16,8 +19,8 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-
-public class ViewManager {
+// TODO: using resources in jar file 
+public class ViewManager extends Object{
 	
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 800;
@@ -39,6 +42,7 @@ public class ViewManager {
 		createBackground();
 		createTitle();
 		createButtons();
+		createTitle();
 	}
 	
 	public Stage getMainStage() {
@@ -66,7 +70,7 @@ public class ViewManager {
 	}
 	
 	private void createComputerButton() {
-		PongButton PlayerComputerBtn = new PongButton("vs. Comp");
+		PongButton PlayerComputerBtn = new PongButton("vs. PC");
 		addMenuButton(PlayerComputerBtn);		
 	}
 	
@@ -77,6 +81,7 @@ public class ViewManager {
 	
 	private void createExitButton() {
 		PongButton ExitBtn = new PongButton("Exit");
+		//ExitBtn.onMouseClickedProperty();					//Dopisać zamknięcie okna
 		addMenuButton(ExitBtn);		
 	}
 	
@@ -85,6 +90,29 @@ public class ViewManager {
 	}
 	
 	private void createTitle() {
-		//ImageView title = new ImageView("src/test/resources/PongTitle.png");		
+		//String titlePath = "file:src/main/resources/PongTitle.png";
+		//InputStream titleURL = getClass().getResourceAsStream(titlePath);
+		//titlePath = IOUtils.to
+		//ClassLoader classLoader = getClass().getClassLoader();
+		//String imageUrl = classLoader.getResource("PongTitle.png").toExternalForm();
+		final ImageView title = new ImageView("file:src/main/resources/PongTitle.png");
+		title.setLayoutX(MENU_BUTTONS_START_X);
+		title. setLayoutY(-80);
+		
+		title.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			//@Override
+			public void handle(MouseEvent event) {
+				title.setEffect(new DropShadow());
+			}
+		});
+		
+		title.setOnMouseExited(new EventHandler<MouseEvent>() {
+			//@Override
+			public void handle(MouseEvent event) {
+				title.setEffect(null);
+			}
+		});
+		
+		mainPane.getChildren().add(title);
 	}
 }

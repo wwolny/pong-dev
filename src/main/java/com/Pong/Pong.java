@@ -27,7 +27,7 @@ public class Pong extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+}
 	
 	
 	
@@ -58,4 +58,8 @@ public class Pong extends Application {
 //		primaryStage.setY(0);
 //		primaryStage.initStyle(StageStyle.UNDECORATED);
 //		primaryStage.setOpacity(0.5);
-}
+//}
+
+
+
+

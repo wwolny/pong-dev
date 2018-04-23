@@ -12,13 +12,13 @@ import javafx.scene.text.Font;
 
 public class PongButton  extends Button{
 	private final String FONT_PATH = "src/main/resources/kenvector_future.ttf";
-	private final String BUTTON_PRESSED_STYLE = "-fx-backgorund-color: transparent; -fx-background-image: url('/src/main/resources/grey_button_pressed.png');";
+	private final String BUTTON_PRESSED_STYLE = "-fx-backgorund-color: transparent; -fx-background-image: url('src/main/resources/grey_button_pressed.png');";
 	private final String BUTTON_FREE_STYLE = "-fx-backgorund-color: transparent; -fx-background-image: url('src/main/resources/grey_button.png');";
 	
 	public PongButton(String text) {
 		setText(text);
 		setButtonFont();
-		setPrefWidth(190);
+		setPrefWidth(250);
 		setPrefHeight(49);
 		setStyle(BUTTON_FREE_STYLE);
 		initializeButtonListners();
@@ -77,12 +77,6 @@ public class PongButton  extends Button{
 				setEffect(null);
 			}
 		});
-		
-		
-		
-		
-		
-		
 	}
 }
 
