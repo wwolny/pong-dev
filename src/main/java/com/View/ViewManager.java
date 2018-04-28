@@ -81,7 +81,12 @@ public class ViewManager extends Object{
 	
 	private void createExitButton() {
 		PongButton ExitBtn = new PongButton("Exit");
-		//ExitBtn.onMouseClickedProperty();					//Dopisać zamknięcie okna
+		ExitBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				System.exit(0);
+			}
+		});	
 		addMenuButton(ExitBtn);		
 	}
 	
@@ -100,14 +105,14 @@ public class ViewManager extends Object{
 		title. setLayoutY(-80);
 		
 		title.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			//@Override
+			@Override
 			public void handle(MouseEvent event) {
 				title.setEffect(new DropShadow());
 			}
 		});
 		
 		title.setOnMouseExited(new EventHandler<MouseEvent>() {
-			//@Override
+			@Override
 			public void handle(MouseEvent event) {
 				title.setEffect(null);
 			}

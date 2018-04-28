@@ -1,4 +1,6 @@
+com/View/ViewManager$3.class
 com/Button/PongButton.class
+com/View/GameStage.class
 com/Button/PongButton$1.class
 com/Button/PongButton$2.class
 com/Pong/Pong.class
