@@ -1,5 +1,9 @@
 package com.PongElements;
 
+import static org.junit.Assert.fail;
+
+import org.junit.Test;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -54,7 +58,7 @@ public class Paddle {
 	public double getHeight() {
 		return height;
 	}
-	/*
+	
 	@Test
 	public void TestPaddle() {
 		Paddle pad1 = new Paddle(1, 500, 600);
@@ -67,6 +71,6 @@ public class Paddle {
 		for(int i = 0; i <100; i++) {
 			pad1.moveUp();
 		}
-	}*/
+	}
 	
 }
