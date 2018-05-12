@@ -120,14 +120,5 @@ public class MenuScreen extends Scene{
 		});
 		
 		((AnchorPane)getRoot()).getChildren().add(title);
-	}
-	/*
-	@Test
-	public void TestMenu() {
-		MenuScreen menu = new MenuScreen();
-		if(menu.createScene() != 1) {
-			fail("MenuScreen");
-		} 
-	}*/
-	
+	}	
 }

@@ -39,17 +39,4 @@ public enum ViewManager {
 		}
 		return;
 	}
-	/*
-	@Test
-	public void TestView() {
-		ViewManager man1 = ViewManager.INSTANCE;
-		ViewManager man2 = ViewManager.INSTANCE;
-		ViewManager man3 = ViewManager.INSTANCE;
-		if(man1.equals(man2) && man2.equals(man3)) {
-			
-		} 
-		else {
-			fail("ViewManager");
-		}
-	}*/
 }

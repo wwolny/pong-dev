@@ -58,13 +58,17 @@ public class PlayerScene extends Scene{
 			else if(key.getCode() == KeyCode.S) {
 				player1.moveDown();
 			}
-			else if(key.getCode() == KeyCode.UP) {
+		});
+		
+		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+			if(key.getCode() == KeyCode.UP) {
 				player2.moveUp();
 			}
 			else if(key.getCode() == KeyCode.DOWN) {
 				player2.moveDown();
 			}
 		});
+		
 		
 		canvas.setOnMouseClicked(e ->  gameStarted = true);
 		((StackPane)getRoot()).getChildren().add(canvas);
@@ -119,13 +123,13 @@ public class PlayerScene extends Scene{
 		gc.setFill(Color.BLACK);
 		gc.fillRect(0, 0, width, height);
 	}
-	/*
+	
 	@Test
 	public void TestPlayer() {
 		PlayerScene player = new PlayerScene();
 		if(player.createScene() != 1) {
 			fail("PlayerScreen");
 		} 
-	}*/
+	}
 		
 }
