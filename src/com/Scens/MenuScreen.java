@@ -1,12 +1,12 @@
-package com.View.Screens;
+/** 
+ * PONG application.
+ */
+package com.Scens;
 
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.junit.Test;
-
 import com.Button.PongButton;
-import com.View.ViewManager;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -20,15 +20,22 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
-
+/**
+ * The Menu scene.
+ * @author wojtek
+ *
+ */
 //TODO: using resources in jar file 
-public class MenuScreen extends Scene{
+public class MenuScreen extends Scene implements PongScens{
 	
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 800;
 	private final static int MENU_BUTTONS_START_X = 100;
 	private final static int MENU_BUTTONS_START_Y = 150;
 	
+	/**
+	 * The list of buttons.
+	 */
 	List<PongButton> menuButtons;
 	
 	public MenuScreen() {
@@ -65,7 +72,7 @@ public class MenuScreen extends Scene{
 
 			@Override
 			public void handle(MouseEvent event) {
-				ViewManager.INSTANCE.changeScene("Player");
+				manager.changeScene("Player");
 			}
 		});
 	}
@@ -101,7 +108,7 @@ public class MenuScreen extends Scene{
 		//titlePath = IOUtils.to
 		//ClassLoader classLoader = getClass().getClassLoader();
 		//String imageUrl = classLoader.getResource("PongTitle.png").toExternalForm();
-		final ImageView title = new ImageView("file:src/main/resources/PongTitle.png");
+		final ImageView title = new ImageView("file:resources/PongTitle.png");
 		title.setLayoutX(MENU_BUTTONS_START_X);
 		title. setLayoutY(-80);
 		

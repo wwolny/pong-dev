@@ -11,9 +11,9 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.text.Font;
 
 public class PongButton  extends Button{
-	private final String FONT_PATH = "src/main/resources/kenvector_future.ttf";
-	private final String BUTTON_PRESSED_STYLE = "-fx-backgorund-color: transparent; -fx-background-image: url('src/main/resources/grey_button_pressed.png');";
-	private final String BUTTON_FREE_STYLE = "-fx-backgorund-color: transparent; -fx-background-image: url('src/main/resources/grey_button.png');";
+	private final String FONT_PATH = "resources/kenvector_future.ttf";
+	private final String BUTTON_PRESSED_STYLE = "-fx-backgorund-color: transparent; -fx-background-image: url('resources/grey_button_pressed.png');";
+	private final String BUTTON_FREE_STYLE = "-fx-backgorund-color: transparent; -fx-background-image: url('resources/grey_button.png');";
 	
 	public PongButton(String text) {
 		setText(text);

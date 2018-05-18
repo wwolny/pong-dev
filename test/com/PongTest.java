@@ -1,4 +1,4 @@
-package com.Pong;
+package com;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,7 @@ public class PongTest {
 
 	@Test
 	public void testStartStage() {
-		Pong pong = new Pong();
+		Pong pong;
 	}
 
 }

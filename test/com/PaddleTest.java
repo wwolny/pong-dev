@@ -1,8 +1,9 @@
-package com.PongElements;
+package com;
 
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
+import com.PongElements.Paddle;
 
 public class PaddleTest {
 
