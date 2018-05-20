@@ -9,16 +9,13 @@ import java.util.List;
 import com.Button.PongButton;
 
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 
 /**
  * The Menu scene.
@@ -27,11 +24,11 @@ import javafx.scene.paint.Color;
  */
 //TODO: using resources in jar file 
 public class MenuScreen extends Scene implements PongScens{
-	
-	private static final int WIDTH = 600;
-	private static final int HEIGHT = 800;
 	private final static int MENU_BUTTONS_START_X = 100;
 	private final static int MENU_BUTTONS_START_Y = 150;
+	
+	private Canvas canvas;
+	private GraphicsContext gc;
 	
 	/**
 	 * The list of buttons.
@@ -44,7 +41,10 @@ public class MenuScreen extends Scene implements PongScens{
 	}
 	
 	public int createScene() {
-		createBackground();
+		canvas = new Canvas(WIDTH, HEIGHT);
+		gc = canvas.getGraphicsContext2D();
+		createBackground(gc);
+		((AnchorPane)getRoot()).getChildren().add(canvas);
 		createTitle();
 		createButtons();
 		createTitle();
@@ -66,7 +66,7 @@ public class MenuScreen extends Scene implements PongScens{
 	}
 	
 	private void createPlayerButton() {
-		PongButton PlayerPlayerBtn = new PongButton("vs. Player");
+		PongButton PlayerPlayerBtn = new PongButton("vs. Player", sett.getFontSize());
 		addMenuButton(PlayerPlayerBtn);
 		PlayerPlayerBtn.setOnMousePressed(new EventHandler<MouseEvent>() {
 
@@ -78,17 +78,29 @@ public class MenuScreen extends Scene implements PongScens{
 	}
 	
 	private void createComputerButton() {
-		PongButton PlayerComputerBtn = new PongButton("vs. PC");
-		addMenuButton(PlayerComputerBtn);		
+		PongButton PlayerComputerBtn = new PongButton("vs. PC", sett.getFontSize());
+		addMenuButton(PlayerComputerBtn);	
+		PlayerComputerBtn.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				manager.changeScene("CompConf");
+			}
+		});
 	}
 	
 	private void createSettingsButton() {
-		PongButton SettingsBtn = new PongButton("Settings");
-		addMenuButton(SettingsBtn);		
+		PongButton SettingsBtn = new PongButton("Settings", sett.getFontSize());
+		addMenuButton(SettingsBtn);	
+		SettingsBtn.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				manager.changeScene("Settings");
+			}
+		});
 	}
 	
 	private void createExitButton() {
-		PongButton ExitBtn = new PongButton("Exit");
+		PongButton ExitBtn = new PongButton("Exit", sett.getFontSize());
 		ExitBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -98,8 +110,9 @@ public class MenuScreen extends Scene implements PongScens{
 		addMenuButton(ExitBtn);		
 	}
 	
-	private void createBackground() {
-		((AnchorPane)getRoot()).setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+	private void createBackground(GraphicsContext gc) {
+		gc.setFill(sett.getBackgroundColor());
+		gc.fillRect(0, 0, WIDTH, HEIGHT);
 	}
 	
 	private void createTitle() {
@@ -127,5 +140,10 @@ public class MenuScreen extends Scene implements PongScens{
 		});
 		
 		((AnchorPane)getRoot()).getChildren().add(title);
+	}
+
+	@Override
+	public void updateBackground() {
+		createBackground(gc);
 	}	
 }

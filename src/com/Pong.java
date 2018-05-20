@@ -6,6 +6,7 @@ package com;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+//TODO: Comments, Tests, Playervs.Player game, Player vs. Comp game, modification
 
 /**
  * Here starts the application.
@@ -15,7 +16,7 @@ import javafx.stage.Stage;
  *
  */
 public class Pong extends Application {
-	private Stage mainStage;
+	
 	/**
 	 * Main
 	 * @param args
@@ -23,6 +24,7 @@ public class Pong extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 	/**
 	 * Starting point of the application.
 	 */
@@ -30,8 +32,7 @@ public class Pong extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		try {
 			ViewManager manager = ViewManager.INSTANCE;
-			mainStage = new Stage();
-			manager.setManager(mainStage);
+			manager.setManager(primaryStage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

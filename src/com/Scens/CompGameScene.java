@@ -1,5 +1,5 @@
 /**
- * Pong application.
+ * Pong application
  */
 package com.Scens;
 
@@ -16,16 +16,23 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 /**
- * Scene for the Pong game Player vs. Player
+ * Scene that will allow to create Scenes for different levels
  * @author wojtek
  *
  */
-public class PlayerScene extends GameAbstractScene implements PongScens{	
+public class CompGameScene extends GameAbstractScene implements PongScens {
+	private int level;
+	
 	/**
-	 * Method constructing the screen.
-	 * Needs to be called in the ViewManager.
-	 * Meets Interface for all scenes.
+	 * Constructor with integer specifying the hardness of the level
+	 * @param level
 	 */
+	public CompGameScene(int level) {
+		super();
+		this.level = level;
+	}
+	
+	@Override
 	public int createScene() {
 		player1 = new Paddle(1, WIDTH, HEIGHT);
 		player2 = new Paddle(2, WIDTH, HEIGHT);
@@ -35,20 +42,20 @@ public class PlayerScene extends GameAbstractScene implements PongScens{
 		Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), e -> run(gc)));
 		tl.setCycleCount(Timeline.INDEFINITE);
 		
+		if(level == 1) {
+			player2.setSpeed(0.5);
+		} 
+		else if(level == 2) {
+			player2.setSpeed(1);
+		}
+		
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-			if(key.getCode() == KeyCode.W) {
+			if(key.getCode() == KeyCode.UP) {
 				player1.moveUp();
 			}
-			if(key.getCode() == KeyCode.S) {
+			else if(key.getCode() == KeyCode.DOWN) {
 				player1.moveDown();
 			}
-			if(key.getCode() == KeyCode.UP) {
-				player2.moveUp();
-			}
-			if(key.getCode() == KeyCode.DOWN) {
-				player2.moveDown();
-			}
-			
 		});
 		
 		escapeListner();
@@ -59,15 +66,20 @@ public class PlayerScene extends GameAbstractScene implements PongScens{
 		tl.play();
 		return 1;
 	}
-	
-	/**
-	 * Method creating the Scene.
-	 * Scene created with Canvas and GraphicContext
-	 * @param gc
-	 */
+
+	@Override
 	protected void run(GraphicsContext gc) {
 		setScene();
 		player1.update(gc);
+		rivalPlay();
+	}
+	
+	private void rivalPlay() {
+		if(ball.getY() < player2.getPosY()) {
+			player2.moveUp();
+		}  else {
+			player2.moveDown();
+		}
 		player2.update(gc);
 	}
 }

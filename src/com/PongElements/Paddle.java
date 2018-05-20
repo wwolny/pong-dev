@@ -14,14 +14,13 @@ import javafx.scene.paint.Color;
  *
  */
 public class Paddle {
-	//private int paddleNr;
-	//private int score=0;
 	private double x;
 	private double y;
 	private double width = 10;
 	private double height = 100;
 	private double startWidth;
 	private double startHeight;
+	private double speed;
 	
 	/**
 	 * Constructor of the Paddle.
@@ -35,6 +34,7 @@ public class Paddle {
 	public Paddle(int paddleNr, int startWidth, int startHeight) {
 		this.startHeight = startHeight;
 		this.startWidth = startWidth;
+		speed = 1;
 		if(paddleNr == 1) {
 			this.x = width;
 		}
@@ -49,7 +49,7 @@ public class Paddle {
 	 */
 	public void moveUp() {
 		if(y > 0) {
-			y -=5;
+			y -=5*speed;
 		}
 	}
 	
@@ -58,7 +58,7 @@ public class Paddle {
 	 */
 	public void moveDown() {
 		if(y < startHeight - height) {
-			y +=5;
+			y +=5*speed;
 		}
 	}
 	
@@ -97,5 +97,15 @@ public class Paddle {
 	 */
 	public double getHeight() {
 		return height;
-	}	
+	}
+	
+
+	/**
+	 * @param set the speed to 'speed'
+	 */
+	public void setSpeed(double speed) {
+		if(speed > 0 && speed < 5)
+			this.speed = speed;
+	}
+
 }

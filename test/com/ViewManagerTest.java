@@ -1,23 +1,38 @@
+/**
+ * Pong application
+ */
 package com;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import com.Scens.MenuScreen;
-import com.Scens.PlayerScene;
-import com.ViewManager;
-
-import javafx.stage.Stage;
-
+/**
+ * Tests of the ViewManager
+ * @author wojtek
+ *
+ */
 public class ViewManagerTest {
-
+	/**
+	 * Test of getting an instance of the viewManager
+	 */
 	@Test
-	public void testChangeScene() {
-		//ViewManager VM = ViewManager.INSTANCE;
-		//Stage newStage = new Stage();
-		//VM.setManager();
-//		/ViewManager.INSTANCE.setManager(broadway);
-		//assertTrue(Man1.changeScene("Player") == 1);
+	public final void testGetInstance() {
+		ViewManager viewMan = ViewManager.INSTANCE;
+		assertThat("Can get the Instance of ViewManager.", viewMan, is(notNullValue()));
 	}
+	
+	/**
+	 * Test of getting an instance of the viewManager
+	 */
+	@Test
+	public final void testGetInstances() {
+		ViewManager viewMan1 = ViewManager.INSTANCE;
+		ViewManager viewMan2 = ViewManager.INSTANCE;
+		assertEquals("Instansces are equal",viewMan1, viewMan2);
+	}
+	
 }

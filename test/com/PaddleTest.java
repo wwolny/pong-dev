@@ -3,6 +3,7 @@ package com;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
+
 import com.PongElements.Paddle;
 
 public class PaddleTest {
@@ -10,6 +11,7 @@ public class PaddleTest {
 	@Test
 	public void testPaddle() {
 		Paddle pad1 = new Paddle(1, 500, 600);
+		pad1.getHeight();		
 	}
 
 	@Test

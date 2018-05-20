@@ -3,13 +3,16 @@
  */
 package com;
 
+import com.Scens.CompChooseScene;
+import com.Scens.CompGameScene;
 import com.Scens.MenuScreen;
 import com.Scens.PlayerScene;
+import com.Scens.SettingsScene;
 
 import javafx.stage.Stage;
 
 /**
- * The Enum Singleton that manages changing and loading the Scenes.
+ * The enum Singleton that manages changing and loading the Scenes.
  * @author wojtek
  *
  */
@@ -19,6 +22,10 @@ public enum ViewManager {
 	private Stage mainStage;
 	private MenuScreen menuScene;
 	private PlayerScene playerScene;
+	private CompChooseScene compConf;
+	private SettingsScene settings;
+	private CompGameScene level1;
+	private CompGameScene level2;
 	
 	private ViewManager() {}
 	
@@ -27,16 +34,32 @@ public enum ViewManager {
 	 * @param startStage
 	 */
 	public void setManager(Stage startStage) {
-		mainStage = startStage;
+		if(startStage == null)
+			mainStage = new Stage();
+		else mainStage = startStage;
 		menuScene = new MenuScreen();
 		playerScene = new PlayerScene();
-		mainStage.setTitle("Pong");
+		compConf = new CompChooseScene();
+		settings = new SettingsScene();
+		level1 = new CompGameScene(1);
+		level2 = new CompGameScene(2);
 		mainStage.setTitle("Pong");
 		mainStage.setScene(menuScene);
-		menuScene.createScene();
-		playerScene.createScene();
+		createScens();
 		mainStage.setResizable(false);
 		mainStage.show();
+	}
+	
+	/**
+	 * Method that calls all scenes
+	 */
+	private void createScens() {
+		menuScene.createScene();
+		playerScene.createScene();
+		compConf.createScene();
+		settings.createScene();
+		level1.createScene();
+		level2.createScene();
 	}
 	
 	/**
@@ -51,8 +74,30 @@ public enum ViewManager {
 		} else if (newScene == "Menu") {
 			mainStage.setScene(menuScene);
 			return 2;
+		} else if (newScene == "CompConf") {
+			mainStage.setScene(compConf);
+			return 3;
+		} else if (newScene == "Settings") {
+			mainStage.setScene(settings);
+			return 4;
+		} else if (newScene == "Level1") {
+			mainStage.setScene(level1);
+			return 5;
+		} else if (newScene == "Level2") {
+			mainStage.setScene(level2);
+			return 6;
 		}
 		return 0;
+	}
+	
+	/**
+	 * Updates background in all scens.
+	 */
+	public void updateBackground() {
+		menuScene.updateBackground();
+		playerScene.updateBackground();
+		compConf.updateBackground();
+		settings.updateBackground();
 	}
 	
 	/**
