@@ -1,10 +1,11 @@
 /**
  * Pong application
  */
-package com.Scens;
+package OldPongScenes;
 
 import com.PongElements.Ball;
 import com.PongElements.Paddle;
+import com.Scens.PongScens;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

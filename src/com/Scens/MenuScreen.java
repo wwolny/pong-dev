@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.Button.PongButton;
-import com.Controllers.MenuController;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -33,7 +32,6 @@ public class MenuScreen extends Scene implements PongScens{
 	
 	private Canvas canvas;
 	private GraphicsContext gc;
-	private MenuController controller;
 	/**
 	 * The list of buttons.
 	 */

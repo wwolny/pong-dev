@@ -87,7 +87,7 @@ public class CompChooseScene extends Scene implements PongScens{
 		Level1Btn.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				manager.changeScene(manager.getLevel1());
+				manager.changeScene(manager.getLevel1Scene());
 			}
 		});
 	}
@@ -98,7 +98,7 @@ public class CompChooseScene extends Scene implements PongScens{
 		Level2Btn.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				manager.changeScene(manager.getLevel2());
+				manager.changeScene(manager.getLevel2Scene());
 			}
 		});
 	}
