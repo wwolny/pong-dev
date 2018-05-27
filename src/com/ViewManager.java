@@ -29,6 +29,15 @@ public enum ViewManager {
 	
 	private ViewManager() {}
 	
+	public enum Scenes {
+		Menu,
+		Player,
+		CompConf,
+		Settings,
+		Level1,
+		Level2
+	}
+	
 	/**
 	 * The function that shows stage.
 	 * @param startStage
@@ -67,23 +76,23 @@ public enum ViewManager {
 	 * @param newScene
 	 * @return
 	 */
-	public int changeScene(String newScene) {
-		if(newScene == "Player") {
+	public int changeScene(Scenes newScene) {
+		if(newScene == Scenes.Player) {
 			mainStage.setScene(playerScene);
 			return 1;
-		} else if (newScene == "Menu") {
+		} else if (newScene == Scenes.Menu) {
 			mainStage.setScene(menuScene);
 			return 2;
-		} else if (newScene == "CompConf") {
+		} else if (newScene == Scenes.CompConf) {
 			mainStage.setScene(compConf);
 			return 3;
-		} else if (newScene == "Settings") {
+		} else if (newScene == Scenes.Settings) {
 			mainStage.setScene(settings);
 			return 4;
-		} else if (newScene == "Level1") {
+		} else if (newScene == Scenes.Level1) {
 			mainStage.setScene(level1);
 			return 5;
-		} else if (newScene == "Level2") {
+		} else if (newScene == Scenes.Level2) {
 			mainStage.setScene(level2);
 			return 6;
 		}
@@ -91,7 +100,7 @@ public enum ViewManager {
 	}
 	
 	/**
-	 * Updates background in all scens.
+	 * Updates background in all scenes.
 	 */
 	public void updateBackground() {
 		menuScene.updateBackground();
@@ -116,4 +125,45 @@ public enum ViewManager {
 		return mainStage.getHeight();
 	}
 	
+	/**
+	 * @return Menu  of Scenes Enum
+	 */
+	public Scenes getMenu() {
+		return Scenes.Menu;
+	}
+	
+	/**	
+	 * @return Player  of Scenes Enum
+	 */
+	public Scenes getPlayer() {
+		return Scenes.Player;
+	}
+	
+	/**
+	 * @return Game versus Computer Configuration  of Scenes Enum
+	 */
+	public Scenes getCompConf() {
+		return Scenes.CompConf;
+	}
+	
+	/**
+	 * @return Settings  of Scenes Enum
+	 */
+	public Scenes getSettings() {
+		return Scenes.Settings;
+	}
+	
+	/**
+	 * @return Level1 of Scenes Enum
+	 */
+	public Scenes getLevel1() {
+		return Scenes.Level1;
+	}
+	
+	/**
+	 * @return Level2 of Scenes Enum
+	 */
+	public Scenes getLevel2() {
+		return Scenes.Level2;
+	}	
 }

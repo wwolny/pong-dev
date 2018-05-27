@@ -21,8 +21,11 @@ import javafx.util.Duration;
  *
  */
 public class CompGameScene extends GameAbstractScene implements PongScens {
+	private static final int UP = 1;
+	private static final int DOWN = -1;
+	private static final int STAY = 0;
 	private int level;
-	
+	private int direction = 0;
 	/**
 	 * Constructor with integer specifying the hardness of the level
 	 * @param level
@@ -51,10 +54,15 @@ public class CompGameScene extends GameAbstractScene implements PongScens {
 		
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 			if(key.getCode() == KeyCode.UP) {
-				player1.moveUp();
+				direction = UP;
 			}
 			else if(key.getCode() == KeyCode.DOWN) {
-				player1.moveDown();
+				direction = DOWN;
+			}
+		});
+		this.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
+			if(key.getCode() == KeyCode.UP || key.getCode() == KeyCode.DOWN) {
+				direction = STAY;
 			}
 		});
 		
@@ -70,15 +78,16 @@ public class CompGameScene extends GameAbstractScene implements PongScens {
 	@Override
 	protected void run(GraphicsContext gc) {
 		setScene();
-		player1.update(gc);
+		player1.move(direction);
 		rivalPlay();
+		player1.update(gc);
 	}
 	
 	private void rivalPlay() {
 		if(ball.getY() < player2.getPosY()) {
-			player2.moveUp();
+			player2.move(UP);
 		}  else {
-			player2.moveDown();
+			player2.move(DOWN);
 		}
 		player2.update(gc);
 	}
