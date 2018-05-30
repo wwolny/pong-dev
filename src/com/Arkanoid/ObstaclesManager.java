@@ -4,6 +4,7 @@
 package com.Arkanoid;
 
 import com.Controllers.GameController;
+import com.PongElements.Obstacle;
 
 /**
  * Controller for the MVC connected with creating obstacles
@@ -17,13 +18,15 @@ public class ObstaclesManager {
 	public ObstaclesManager(ObstaclesModel model, GameController gameController) {
 		this.model = model;
 		this.gameController = gameController;
+		generateLimits();
+		generateObstacles();
 	}
 	
 	/**
 	 * Method that must be called before drawing any Obstacle
 	 * This method generates limits that make GraphicsContxt draw only within specified field
 	 */
-	public void generateLimits() {
+	private void generateLimits() {
 		if(model.getObstaclesMapHeight()*(model.getPadding()+model.getObstacleHeight()) 
 				< model.getObstaclesFieldHeight())
 			model.setMaxObstaclesInColumn(model.getObstaclesMapHeight());
@@ -49,6 +52,23 @@ public class ObstaclesManager {
 				}
 			}
 		}		
+	}
+	
+	/**
+	 * Generetes Obstacles in both maps
+	 */
+	private void generateObstacles() {
+		for(int i = 0; i < model.getObstaclesMapHeight(); i++) {
+			for (int j = 0; j < model.getObstaclesMapWidth(); j++) {
+				if(Math.random() > 0.5) {
+					model.getObstaclesMap()[i][j] = 1;
+					model.getObstaclesMapObjects()[i][j] = new Obstacle(calculateX(j), calculateY(i), model.getObstacleWidth(), model.getObstacleHeight());
+				}
+				else 
+					model.getObstaclesMap()[i][j] = 0;
+				//obstaclesMap[i][j] = (int)((Math.random()+0.5)%1);
+			}
+		}
 	}
 	
 	/**
@@ -84,14 +104,22 @@ public class ObstaclesManager {
 		}
 	}
 	
+	public Obstacle getObstalce(int heightId, int widthId) {
+		return model.getObstaclesMapObjects()[heightId][widthId];
+	}
+	
 	public void checkCollision(int heightId, int widthId) {
-		if(gameController.getBallX()+gameController.getBallRadius() > calculateX(widthId) 
+		if(gameController.getBall().collision(getObstalce(heightId, widthId))) {
+			gameController.changeBallDirection();
+			destroyObstacle(heightId, widthId);
+		}
+		/*if(gameController.getBallX()+gameController.getBallRadius() > calculateX(widthId) 
 			&& gameController.getBallX() < calculateX(widthId)+model.getObstacleWidth()
 			&& gameController.getBallY() > calculateY(heightId) 
 			&& gameController.getBallY() < calculateY(widthId)+model.getObstacleHeight()) {
 				gameController.changeBallDirection();
 				destroyObstacle(heightId, widthId);
-		}
+		}*/
 	}
 	
 	public void destroyObstacle(int heightId, int widthId) {

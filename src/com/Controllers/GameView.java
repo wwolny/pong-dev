@@ -39,7 +39,7 @@ abstract class GameView extends Scene implements PongScens {
 		this.controller = controller;
 		canvas = new Canvas(GameModel.WIDTH, GameModel.HEIGHT);
 		gc = canvas.getGraphicsContext2D();
-		obstaclesView = new ObstaclesView(this.model.getObstaclesModel(), this.controller.getObstaclesController(), gc);
+		obstaclesView = new ObstaclesView(this.model.getObstaclesModel(), this.controller.getObstaclesController(), gc);	
 	}
 	
 	public abstract int createScene();
@@ -53,7 +53,8 @@ abstract class GameView extends Scene implements PongScens {
 		gc.setFill(Color.WHITE);
 		gc.setFont(Font.font(25));
 		if(model.isGameStarted()) {
-			updateBall();
+			model.getBall().render(gc);
+			//updateBall();
 			if(model.isObstacles()) {
 				obstaclesView.createObstacles();
 			}
@@ -64,7 +65,6 @@ abstract class GameView extends Scene implements PongScens {
 			controller.startBallPosition();
 		}
 		controller.moveBall();
-		controller.getObstaclesController().checkObstacles();
 		gc.fillText(model.getScoreP1() + "\t\t\t\t\t\t\t\t" + model.getScoreP2(), GameModel.WIDTH / 2, 100);
 	}
 	

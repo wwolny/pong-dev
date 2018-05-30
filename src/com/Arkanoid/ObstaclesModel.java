@@ -3,6 +3,8 @@
  */
 package com.Arkanoid;
 
+import com.PongElements.Obstacle;
+
 /**
  * @author wojtek
  *
@@ -11,6 +13,7 @@ public class ObstaclesModel {
 	private final int obstaclesMapWidth = 3;
 	private final int obstaclesMapHeight = 5;
 	private int obstaclesMap[][];
+	private Obstacle obstaclesMapObjects[][];
 	
 	private int obstaclesFieldStartX;
 	private int obstaclesFieldStartY;
@@ -41,15 +44,7 @@ public class ObstaclesModel {
 		this.obstaclesFieldWidth = fieldWidth;
 		this.obstaclesFieldHeight = fieldHeight;
 		obstaclesMap = new int[obstaclesMapHeight][obstaclesMapWidth];
-		for(int i = 0; i < obstaclesMapHeight; i++) {
-			for (int j = 0; j < obstaclesMapWidth; j++) {
-				if(Math.random() > 0.5)
-					obstaclesMap[i][j] = 1;
-				else 
-					obstaclesMap[i][j] = 0;
-				//obstaclesMap[i][j] = (int)((Math.random()+0.5)%1);
-			}
-		}
+		obstaclesMapObjects = new Obstacle[obstaclesMapHeight][obstaclesMapWidth];
 	}
 		
 	public void generateMap() {
@@ -65,6 +60,14 @@ public class ObstaclesModel {
 	}
 	
 	
+	
+	/**
+	 * @return the obstaclesMapObjects
+	 */
+	public Obstacle[][] getObstaclesMapObjects() {
+		return obstaclesMapObjects;
+	}
+
 	/**
 	 * @return the obstaclesMap
 	 */

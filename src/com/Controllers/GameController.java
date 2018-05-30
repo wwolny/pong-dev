@@ -7,6 +7,7 @@ import java.util.Random;
 
 import com.ViewManager;
 import com.Arkanoid.ObstaclesManager;
+import com.PongElements.Ball;
 
 /**
  * @author wojtek
@@ -24,7 +25,6 @@ public class GameController {
 	
 	public void setObstacles() {
 		model.setObstacles(true);
-		obstaclesController.generateLimits();
 	}
 	
 	
@@ -155,6 +155,8 @@ public class GameController {
 						&& model.getBallY() <= model.getPlayer1Y() + model.getPlayer1Height())) {
 							changeBallDirection();
 			}
+			model.getBall().setPos(model.getBallX(), model.getBallY());
+			getObstaclesController().checkObstacles();
 		}
 	}
 	
@@ -215,5 +217,9 @@ public class GameController {
 	 */
 	public ObstaclesManager getObstaclesController() {
 		return obstaclesController;
+	}
+	
+	public Ball getBall() {
+		return model.getBall();
 	}
 }

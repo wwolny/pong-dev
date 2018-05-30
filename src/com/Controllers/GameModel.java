@@ -4,6 +4,7 @@
 package com.Controllers;
 
 import com.Arkanoid.ObstaclesModel;
+import com.PongElements.Ball;
 
 /**
  * 
@@ -51,6 +52,8 @@ public class GameModel {
 	private double ballSpeedX = defaultBallSpeedX;
 	private double ballSpeedY = defaultBallSpeedY;
 	private int ballRadius = defaultBallRadius;
+
+	private Ball ball;
 	
 	private int level = 1;
 	
@@ -72,6 +75,11 @@ public class GameModel {
 
 	public GameModel() {
 		obstaclesModel = new ObstaclesModel((WIDTH-obstaclesFieldWIDTH)/2, 0, obstaclesFieldWIDTH, obstaclesFieldHEIGHT);
+		ball = new Ball(ballX, ballY, ballRadius);
+	}
+	
+	public Ball getBall() {
+		return ball;
 	}
 	
 	/**
