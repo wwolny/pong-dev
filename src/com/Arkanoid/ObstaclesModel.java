@@ -52,6 +52,18 @@ public class ObstaclesModel {
 		}
 	}
 		
+	public void generateMap() {
+		for(int i = 0; i < obstaclesMapHeight; i++) {
+			for (int j = 0; j < obstaclesMapWidth; j++) {
+				if(Math.random() > 0.5)
+					obstaclesMap[i][j] = 1;
+				else 
+					obstaclesMap[i][j] = 0;
+				//obstaclesMap[i][j] = (int)((Math.random()+0.5)%1);
+			}
+		}
+	}
+	
 	
 	/**
 	 * @return the obstaclesMap

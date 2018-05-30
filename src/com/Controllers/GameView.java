@@ -48,16 +48,17 @@ abstract class GameView extends Scene implements PongScens {
 		gc.setFont(Font.font(25));
 		if(model.isGameStarted()) {
 			updateBall();
+			if(model.isObstacles()) {
+				obstaclesView.createObstacles();
+			}
 		} else {
 			gc.setStroke(Color.YELLOW);
 			gc.setTextAlign(TextAlignment.CENTER);
 			gc.strokeText("Click to Start", GameModel.WIDTH / 2, GameModel.HEIGHT / 2);
 			controller.startBallPosition();
 		}
-		if(model.isObstacles()) {
-			obstaclesView.createObstacles();
-		}
 		controller.moveBall();
+		controller.getObstaclesController().checkObstacles();
 		gc.fillText(model.getScoreP1() + "\t\t\t\t\t\t\t\t" + model.getScoreP2(), GameModel.WIDTH / 2, 100);
 	}
 	

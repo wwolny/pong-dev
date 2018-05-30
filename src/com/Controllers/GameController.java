@@ -150,7 +150,6 @@ public class GameController {
 						&& model.getBallY() <= model.getPlayer1Y() + model.getPlayer1Height())) {
 							changeBallDirection();
 			}
-			obstaclesController.checkObstacles();
 		}
 	}
 	
