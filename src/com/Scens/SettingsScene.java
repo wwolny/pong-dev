@@ -6,6 +6,8 @@ package com.Scens;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.Settings;
+import com.ViewManager;
 import com.Button.ColorButton;
 import com.Button.PongButton;
 
@@ -30,6 +32,9 @@ import javafx.scene.paint.Color;
 public class SettingsScene extends Scene implements PongScens{
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
+	
+	ViewManager manager = ViewManager.INSTANCE;
+	Settings sett = Settings.INSTANCE;
 	
 	private Canvas canvas;
 	private GraphicsContext gc;

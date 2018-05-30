@@ -39,13 +39,14 @@ public class GameController {
 		model.setPlayer1Height(model.getDefaultPlayerHeight());
 		model.setPlayer1Width(model.getDefaultPlayerWidth());
 		model.setPlayer1Speed(model.getDefaultPlayerSpeed());
+		model.setScoreP1(0);
 	}
 	
 	public void setDefaultPlayer2() {
 		model.setPlayer2Height(model.getDefaultPlayerHeight());
 		model.setPlayer2Width(model.getDefaultPlayerWidth());
 		model.setPlayer2Speed(model.getDefaultPlayerSpeed());
-		
+		model.setScoreP2(0);		
 	}
 	
 	public void setDefaultBall() {
@@ -91,7 +92,11 @@ public class GameController {
 		if(!model.isGameStarted()) {
 			model.setGameStarted(true);
 			startBallPosition();
-			setObstacles();
+			if(manager.isOpenPopUp()) {
+				manager.closePopUpWindow();
+				setDefaultValues();
+			}
+			//setObstacles();
 		}
 	}
 	
@@ -155,7 +160,7 @@ public class GameController {
 	
 	public void changeBallDirection() {
 		//model.setBallSpeedY(-1*(model.getBallSpeedY()+Math.signum(model.getBallSpeedY())));
-		model.setBallSpeedX(-1*model.getBallSpeedX());//(model.getBallSpeedX()+ Math.signum(model.getBallSpeedX())));
+		model.setBallSpeedX(-1*(model.getBallSpeedX()+ Math.signum(model.getBallSpeedX())));
 	}
 	
 	public void startBallPosition() {

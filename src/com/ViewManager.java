@@ -11,6 +11,8 @@ import com.Scens.CompChooseScene;
 import com.Scens.MenuScreen;
 import com.Scens.SettingsScene;
 
+import javafx.scene.control.TextArea;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 /**
@@ -37,6 +39,8 @@ public enum ViewManager {
 	private CompGameView levelTwoView;
 	private GameModel levelTwoModel;
 	private GameController levelTwoController;
+	
+	private Popup popUp;
 	
 	private ViewManager() {}
 	
@@ -78,6 +82,11 @@ public enum ViewManager {
 		levelTwoModel = new GameModel();
 		levelTwoController = new GameController(levelTwoModel);
 		levelTwoView = new CompGameView(levelTwoModel, levelTwoController, Level.level2);
+		
+		popUp = new Popup();
+		popUp.setX(400);
+		popUp.setY(250);
+		popUp.setAutoFix(true);
 		
 		mainStage.setTitle("Pong");
 		mainStage.setScene(menuScene);
@@ -137,6 +146,22 @@ public enum ViewManager {
 		playerView.updateBackground();
 		levelOneView.updateBackground();
 		levelTwoView.updateBackground();
+	}
+	
+	public void openPopUpWindow(String message) {
+		popUp.getContent().clear();
+		popUp.getContent().add(new TextArea(message));
+		popUp.show(mainStage);
+		popUp.setHideOnEscape(true);
+	}
+	
+	public void closePopUpWindow() {
+		popUp.getContent().clear();
+		popUp.hide();
+	}
+	
+	public boolean isOpenPopUp() {
+		return popUp.isShowing();
 	}
 	
 	/**

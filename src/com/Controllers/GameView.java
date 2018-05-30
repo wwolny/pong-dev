@@ -4,6 +4,7 @@
 package com.Controllers;
 
 import com.Settings;
+import com.ViewManager;
 import com.Arkanoid.ObstaclesView;
 import com.Scens.PongScens;
 
@@ -30,6 +31,7 @@ abstract class GameView extends Scene implements PongScens {
 	private ObstaclesView obstaclesView;
 	
 	protected Settings sett = Settings.INSTANCE;
+	protected ViewManager manager = ViewManager.INSTANCE;
 	
 	public GameView(GameModel model, GameController controller) {
 		super(new StackPane(), GameModel.WIDTH, GameModel.HEIGHT);
@@ -44,6 +46,10 @@ abstract class GameView extends Scene implements PongScens {
 	
 	protected void setScene() {
 		createBackground(gc);
+		if(model.getScoreP1() == model.getPlayToScore() || model.getScoreP2() == model.getPlayToScore()) {
+			endGame();
+			model.setGameStarted(false);
+		}
 		gc.setFill(Color.WHITE);
 		gc.setFont(Font.font(25));
 		if(model.isGameStarted()) {
@@ -91,8 +97,13 @@ abstract class GameView extends Scene implements PongScens {
 	protected void updateBall() {
 		gc.setFill(Color.WHITE);
 		gc.fillOval(model.getBallX(), model.getBallY(), 
-				model.getBallRadius(), model.getBallRadius());
+						model.getBallRadius(), model.getBallRadius());
 	}
+	
+	protected void endGame() {
+		manager.openPopUpWindow("\tGAME OVER \n Player1: "+model.getScoreP1()+"\tPlayer2: "+model.getScoreP2());
+	}
+	
 	
 	/**
 	 * Method creating the background.

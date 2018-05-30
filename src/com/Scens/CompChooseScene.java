@@ -6,6 +6,8 @@ package com.Scens;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.Settings;
+import com.ViewManager;
 import com.Button.PongButton;
 
 import javafx.event.EventHandler;
@@ -26,6 +28,9 @@ import javafx.scene.layout.VBox;
 public class CompChooseScene extends Scene implements PongScens{
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
+	
+	ViewManager manager = ViewManager.INSTANCE;
+	Settings sett = Settings.INSTANCE;
 	
 	private static final int MAXROWS = 5;
 	private int nxtRow = -1; 
@@ -63,6 +68,10 @@ public class CompChooseScene extends Scene implements PongScens{
 		return 0;
 	}
 	
+	/**
+	 * Adds next button to array
+	 * @param btn
+	 */
 	private void addCompConfButton(PongButton btn) {
 		if(nxtRow < MAXROWS) {
 			nxtRow++;
@@ -70,6 +79,9 @@ public class CompChooseScene extends Scene implements PongScens{
 		}
 	}	
 	
+	/**
+	 * calls create method for each button
+	 */
 	private void createButtons() {
 		createLevel1Button();
 		createLevel2Button();
@@ -81,6 +93,9 @@ public class CompChooseScene extends Scene implements PongScens{
 		((GridPane)getRoot()).add(vbBtns, 0, 0);
 	}
 	
+	/**
+	 * creates Level 1 button
+	 */
 	private void createLevel1Button() {
 		PongButton Level1Btn = new PongButton("Level 1", sett.getFontSize());
 		addCompConfButton(Level1Btn);
@@ -92,6 +107,9 @@ public class CompChooseScene extends Scene implements PongScens{
 		});
 	}
 	
+	/**
+	 * creates Level 2 button
+	 */
 	private void createLevel2Button() {
 		PongButton Level2Btn = new PongButton("Level 2", sett.getFontSize());
 		addCompConfButton(Level2Btn);
@@ -103,11 +121,18 @@ public class CompChooseScene extends Scene implements PongScens{
 		});
 	}
 	
+	/**
+	 * creates statistics button
+	 */
 	private void createStatsButton() {
 		PongButton StatsBtn = new PongButton("Statistics", sett.getFontSize());
 		addCompConfButton(StatsBtn);	
+		//TODO:Implement taking statistics from file
 	}
 	
+	/**
+	 * creates Back button
+	 */
 	private void createBackButton() {
 		PongButton BackBtn = new PongButton("Back", sett.getFontSize());
 		addCompConfButton(BackBtn);
@@ -119,11 +144,17 @@ public class CompChooseScene extends Scene implements PongScens{
 		});
 	}
 	
+	/**
+	 * creates background
+	 */
 	private void createBackground(GraphicsContext gc) {
 		gc.setFill(sett.getBackgroundColor());
 		gc.fillRect(0, 0, WIDTH, HEIGHT);
 	}
 
+	/**
+	 * updates background
+	 */
 	@Override
 	public void updateBackground() {
 		createBackground(gc);		

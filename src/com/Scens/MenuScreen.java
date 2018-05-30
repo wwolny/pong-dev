@@ -6,6 +6,8 @@ package com.Scens;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.Settings;
+import com.ViewManager;
 import com.Button.PongButton;
 
 import javafx.event.EventHandler;
@@ -30,6 +32,9 @@ public class MenuScreen extends Scene implements PongScens{
 	private final static int MENU_BUTTONS_START_X = 100;
 	private final static int MENU_BUTTONS_START_Y = 150;
 	
+	ViewManager manager = ViewManager.INSTANCE;
+	Settings sett = Settings.INSTANCE;
+	
 	private Canvas canvas;
 	private GraphicsContext gc;
 	/**
@@ -42,6 +47,9 @@ public class MenuScreen extends Scene implements PongScens{
 		menuButtons = new ArrayList<PongButton>();
 	}
 	
+	/**
+	 * creates scene for the menu
+	 */
 	public int createScene() {
 		canvas = new Canvas(WIDTH, HEIGHT);
 		gc = canvas.getGraphicsContext2D();
@@ -53,6 +61,10 @@ public class MenuScreen extends Scene implements PongScens{
 		return 1;
 	}
 	
+	/**
+	 * Adds menu button
+	 * @param btn
+	 */
 	private void addMenuButton(PongButton btn) {
 		btn.setLayoutX(MENU_BUTTONS_START_X);
 		btn.setLayoutY(MENU_BUTTONS_START_Y + menuButtons.size()*100);
@@ -60,6 +72,9 @@ public class MenuScreen extends Scene implements PongScens{
 		((AnchorPane)getRoot()).getChildren().add(btn);
 	}
 	
+	/**
+	 * calls create button method for each button
+	 */
 	private void createButtons() {
 		createPlayerButton();
 		createComputerButton();
@@ -67,6 +82,9 @@ public class MenuScreen extends Scene implements PongScens{
 		createExitButton();		
 	}
 	
+	/**
+	 * creates player button
+	 */
 	private void createPlayerButton() {
 		PongButton PlayerPlayerBtn = new PongButton("vs. Player", sett.getFontSize());
 		addMenuButton(PlayerPlayerBtn);
@@ -78,6 +96,9 @@ public class MenuScreen extends Scene implements PongScens{
 		});
 	}
 	
+	/**
+	 * creates computer game button 
+	 */
 	private void createComputerButton() {
 		PongButton PlayerComputerBtn = new PongButton("vs. PC", sett.getFontSize());
 		addMenuButton(PlayerComputerBtn);	
@@ -89,6 +110,9 @@ public class MenuScreen extends Scene implements PongScens{
 		});
 	}
 	
+	/**
+	 * creates settings button
+	 */
 	private void createSettingsButton() {
 		PongButton SettingsBtn = new PongButton("Settings", sett.getFontSize());
 		addMenuButton(SettingsBtn);	
@@ -100,6 +124,9 @@ public class MenuScreen extends Scene implements PongScens{
 		});
 	}
 	
+	/**
+	 * creates exit button
+	 */
 	private void createExitButton() {
 		PongButton ExitBtn = new PongButton("Exit", sett.getFontSize());
 		ExitBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -111,11 +138,18 @@ public class MenuScreen extends Scene implements PongScens{
 		addMenuButton(ExitBtn);		
 	}
 	
+	/**
+	 * creates background
+	 */
 	private void createBackground(GraphicsContext gc) {
 		gc.setFill(sett.getBackgroundColor());
 		gc.fillRect(0, 0, WIDTH, HEIGHT);
 	}
 	
+	/**
+	 * creates title in the headline of the Scene
+	 * TODO:show up title in .jar file
+	 */
 	private void createTitle() {
 		//String titlePath = "file:src/main/resources/PongTitle.png";
 		//InputStream titleURL = getClass().getResourceAsStream(titlePath);
@@ -143,6 +177,9 @@ public class MenuScreen extends Scene implements PongScens{
 		((AnchorPane)getRoot()).getChildren().add(title);
 	}
 
+	/**
+	 * updates background
+	 */
 	@Override
 	public void updateBackground() {
 		createBackground(gc);

@@ -23,7 +23,7 @@ public class GameModel {
 
 	private ObstaclesModel obstaclesModel;	
 	
-	private final int defaultPlayerWidth = 30;
+	private final int defaultPlayerWidth = 20;
 	private final int defaultPlayerHeight = 100;
 	private final double defaultPlayerSpeed = 1;
 	
@@ -44,7 +44,7 @@ public class GameModel {
 
 	private final double defaultBallSpeedX = 2;
 	private final double defaultBallSpeedY = 1;
-	private final int defaultBallRadius = 30;
+	private final int defaultBallRadius = 20;
 	
 	private double ballX = WIDTH/2;
 	private double ballY = HEIGHT/2;
@@ -54,8 +54,11 @@ public class GameModel {
 	
 	private int level = 1;
 	
+	private final int playToScore = 3;
+	
 	private int scoreP1 = 0;
 	private int scoreP2 = 0;
+	
 	
 	private boolean gameStarted = false;
 	
@@ -71,6 +74,13 @@ public class GameModel {
 		obstaclesModel = new ObstaclesModel((WIDTH-obstaclesFieldWIDTH)/2, 0, obstaclesFieldWIDTH, obstaclesFieldHEIGHT);
 	}
 	
+	/**
+	 * @return the playToScore
+	 */
+	public int getPlayToScore() {
+		return playToScore;
+	}
+
 	/**
 	 * @return the obstacles
 	 */

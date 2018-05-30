@@ -97,36 +97,4 @@ public class ObstaclesManager {
 	public void destroyObstacle(int heightId, int widthId) {
 		model.setObstacleZero(widthId, heightId);
 	}
-	
-	public void playerOneMoveFaster() {
-		
-	}
-	
-	public void playerTwoMoveFaster() {
-		
-	}
-	
-	public void playerOneMoveShorter() {
-		
-	}
-	
-	public void playerTwoMoveShorter() {
-		
-	}
-	
-	public void playerOneSetLonger() {
-		
-	}
-	
-	public void playerTwoSetLonger() {
-		
-	}
-	
-	public void playerOneSetShorter() {
-		
-	}
-	
-	public void playerTwoSetShorter() {
-		
-	}
 }

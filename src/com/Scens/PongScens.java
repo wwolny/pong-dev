@@ -3,8 +3,6 @@
  */
 package com.Scens;
 
-import com.Settings;
-import com.ViewManager;
 /**
  * The Interface for all scenes in the application.
  * @author wojtek
@@ -12,11 +10,8 @@ import com.ViewManager;
  */
 public interface PongScens {
 	/**
-	 * Instances of the both ViewManager and Settings manager.
+	 * Methods needed for the ViewManager
 	 */
-	ViewManager manager = ViewManager.INSTANCE;
-	Settings sett = Settings.INSTANCE;
-	
 	public int createScene();
 	public void updateBackground();
 }
