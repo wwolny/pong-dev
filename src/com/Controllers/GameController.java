@@ -6,6 +6,7 @@ package com.Controllers;
 import java.util.Random;
 
 import com.ViewManager;
+import com.Arkanoid.ObstaclesManager;
 
 /**
  * @author wojtek
@@ -14,15 +15,51 @@ import com.ViewManager;
 public class GameController {
 	private final GameModel model;
 	private ViewManager manager = ViewManager.INSTANCE;
+	private ObstaclesManager obstaclesController;
 	
 	public GameController (GameModel model) {
 		this.model = model;
+		obstaclesController = new ObstaclesManager(model.getObstaclesModel(), this);
+	}
+	
+	public void setObstacles() {
+		model.setObstacles(true);
+		obstaclesController.generateLimits();
+	}
+	
+	
+	public void setDefaultValues() {
+		setDefaultPlayer1();
+		setDefaultPlayer2();
+		setDefaultBall();
+		model.setObstacles(false);
+	}
+	
+	public void setDefaultPlayer1() {
+		model.setPlayer1Height(model.getDefaultPlayerHeight());
+		model.setPlayer1Width(model.getDefaultPlayerWidth());
+		model.setPlayer1Speed(model.getDefaultPlayerSpeed());
+	}
+	
+	public void setDefaultPlayer2() {
+		model.setPlayer2Height(model.getDefaultPlayerHeight());
+		model.setPlayer2Width(model.getDefaultPlayerWidth());
+		model.setPlayer2Speed(model.getDefaultPlayerSpeed());
+		
+	}
+	
+	public void setDefaultBall() {
+		model.setBallSpeedX(model.getDefaultBallSpeedX());
+		model.setBallSpeedY(model.getDefaultBallSpeedY());
+		model.setBallRadius(model.getDefaultBallRadius());
 	}
 	
 	public void changeSceneBackToMenu() {
 		model.setGameStarted(false);
 		model.setScoreP1(0);
 		model.setScoreP2(0);
+		setDefaultValues();
+		model.setObstacles(false);
 		manager.changeScene(manager.getMenu());
 	}
 	
@@ -51,8 +88,11 @@ public class GameController {
 	}
 	
 	public void startGame() {
-		model.setGameStarted(true);
-		startBallPosition();
+		if(!model.isGameStarted()) {
+			model.setGameStarted(true);
+			startBallPosition();
+			setObstacles();
+		}
 	}
 	
 	public void movePlayer1() {
@@ -92,7 +132,7 @@ public class GameController {
 		if(model.isGameStarted()) {
 			model.setBallX(model.getBallX()+model.getBallSpeedX());
 			model.setBallY(model.getBallY()+model.getBallSpeedY());
-			if(model.getBallY() > GameModel.HEIGHT || model.getBallY() < 0) 
+			if(model.getBallY() + model.getBallRadius() > GameModel.HEIGHT || model.getBallY() < 0) 
 				model.setBallSpeedY(-1*model.getBallSpeedY());
 			if(model.getBallX() < model.getPlayer1X() - model.getPlayer1Width()) {
 				model.setScoreP2(model.getScoreP2()+1);
@@ -108,14 +148,15 @@ public class GameController {
 						|| (model.getBallX() < model.getPlayer1X() + model.getPlayer1Width() 
 						&& model.getBallY() >= model.getPlayer1Y()
 						&& model.getBallY() <= model.getPlayer1Y() + model.getPlayer1Height())) {
-				model.setBallSpeedY(-1*
-					(model.getBallSpeedY()+
-						Math.signum(model.getBallSpeedY())));
-				model.setBallSpeedX(-1*
-					(model.getBallSpeedX()+ 
-						Math.signum(model.getBallSpeedX())));
+							changeBallDirection();
 			}
+			obstaclesController.checkObstacles();
 		}
+	}
+	
+	public void changeBallDirection() {
+		//model.setBallSpeedY(-1*(model.getBallSpeedY()+Math.signum(model.getBallSpeedY())));
+		model.setBallSpeedX(-1*model.getBallSpeedX());//(model.getBallSpeedX()+ Math.signum(model.getBallSpeedX())));
 	}
 	
 	public void startBallPosition() {
@@ -123,13 +164,16 @@ public class GameController {
 		model.setBallY(GameModel.HEIGHT/2);
 		model.setBallSpeedX(new Random().nextInt(2) == 0 ? 1: -1);
 		model.setBallSpeedY(new Random().nextInt(2) == 0 ? 1: -1);
+		model.setObstacles(false);
 	}
 	
 	public void setLevel1() {
+		model.setLevel(1);
 		model.setPlayer2Speed(0.5);
 	}
 
 	public void setLevel2() {
+		model.setLevel(2);
 		model.setPlayer2Speed(1);
 	}
 	
@@ -140,5 +184,32 @@ public class GameController {
 			changePlayer2DirectionDown();			
 		}
 		movePlayer2();
+	}
+	
+	public double getBallX() {
+		return model.getBallX();
+	}
+	
+	public double getBallY() {
+		return model.getBallY();
+	}
+	
+	public int getBallRadius() {
+		return model.getBallRadius();
+	}
+	
+	public int getBallSpeedX() {
+		return (int)model.getBallSpeedX();
+	}
+	
+	public int getBallSpeedY() {
+		return (int)model.getBallSpeedY();
+	}
+
+	/**
+	 * @return the obstaclesController
+	 */
+	public ObstaclesManager getObstaclesController() {
+		return obstaclesController;
 	}
 }

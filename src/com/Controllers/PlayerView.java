@@ -7,7 +7,6 @@ import com.Scens.PongScens;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -30,8 +29,6 @@ public class PlayerView extends GameView implements PongScens {
 	 * Meets Interface for all scenes.
 	 */
 	public int createScene() {
-		canvas = new Canvas(GameModel.WIDTH, GameModel.HEIGHT);
-		gc = canvas.getGraphicsContext2D();
 		Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), 
 				e -> run(gc)));
 		tl.setCycleCount(Timeline.INDEFINITE);

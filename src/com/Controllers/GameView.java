@@ -4,6 +4,7 @@
 package com.Controllers;
 
 import com.Settings;
+import com.Arkanoid.ObstaclesView;
 import com.Scens.PongScens;
 
 import javafx.scene.Scene;
@@ -26,12 +27,17 @@ abstract class GameView extends Scene implements PongScens {
 	
 	protected GameModel model;
 	protected GameController controller;
+	private ObstaclesView obstaclesView;
+	
 	protected Settings sett = Settings.INSTANCE;
 	
 	public GameView(GameModel model, GameController controller) {
 		super(new StackPane(), GameModel.WIDTH, GameModel.HEIGHT);
 		this.model = model;
 		this.controller = controller;
+		canvas = new Canvas(GameModel.WIDTH, GameModel.HEIGHT);
+		gc = canvas.getGraphicsContext2D();
+		obstaclesView = new ObstaclesView(this.model.getObstaclesModel(), this.controller.getObstaclesController(), gc);
 	}
 	
 	public abstract int createScene();
@@ -47,6 +53,9 @@ abstract class GameView extends Scene implements PongScens {
 			gc.setTextAlign(TextAlignment.CENTER);
 			gc.strokeText("Click to Start", GameModel.WIDTH / 2, GameModel.HEIGHT / 2);
 			controller.startBallPosition();
+		}
+		if(model.isObstacles()) {
+			obstaclesView.createObstacles();
 		}
 		controller.moveBall();
 		gc.fillText(model.getScoreP1() + "\t\t\t\t\t\t\t\t" + model.getScoreP2(), GameModel.WIDTH / 2, 100);

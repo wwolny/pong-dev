@@ -3,6 +3,8 @@
  */
 package com.Controllers;
 
+import com.Arkanoid.ObstaclesModel;
+
 /**
  * 
  * @author wojtek
@@ -12,37 +14,105 @@ public class GameModel {
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
 	
+	private final int obstaclesFieldWIDTH = WIDTH/2;
+	private final int obstaclesFieldHEIGHT = HEIGHT;
+	
 	private static final int UP = 1;
 	private static final int DOWN = -1;
 	private static final int STAY = 0;
 
-	protected int player1Width = 10;
-	protected int player1Height = 100;
-	protected double player1X = player1Width;
-	protected double player1Y = HEIGHT/2 - player1Height/2;
-	protected int player1Direction = STAY;
-	protected double player1Speed = 1;
+	private ObstaclesModel obstaclesModel;	
+	
+	private final int defaultPlayerWidth = 30;
+	private final int defaultPlayerHeight = 100;
+	private final double defaultPlayerSpeed = 1;
+	
+	private int player1Width = defaultPlayerWidth;
+	private int player1Height = defaultPlayerHeight;
+	private double player1X = defaultPlayerWidth;
+	private double player1Y = HEIGHT/2 - defaultPlayerHeight/2;
+	private int player1Direction = STAY;
+	private double player1Speed = defaultPlayerSpeed;
+	
+	private int player2Width = defaultPlayerWidth;
+	private int player2Height= defaultPlayerHeight;
+	private double player2X = WIDTH - defaultPlayerWidth;
+	private double player2Y = HEIGHT/2 - defaultPlayerHeight/2;
+	private int player2Direction = STAY;
+	private double player2Speed = defaultPlayerSpeed;
+	
 
-	protected int player2Width = 10;
-	protected int player2Height= 100;
-	protected double player2X = WIDTH - player2Width;
-	protected double player2Y = HEIGHT/2 - player2Height/2;
-	protected int player2Direction = STAY;
-	protected double player2Speed = 1;
+	private final double defaultBallSpeedX = 2;
+	private final double defaultBallSpeedY = 1;
+	private final int defaultBallRadius = 30;
 	
-	protected double ballX = WIDTH/2;
-	protected double ballY = HEIGHT/2;
-	protected double ballSpeedX = 1;
-	protected double ballSpeedY = 1;
-	protected int ballRadius = 10;
+	private double ballX = WIDTH/2;
+	private double ballY = HEIGHT/2;
+	private double ballSpeedX = defaultBallSpeedX;
+	private double ballSpeedY = defaultBallSpeedY;
+	private int ballRadius = defaultBallRadius;
 	
-	protected int scoreP1 = 0;
-	protected int scoreP2 = 0;
+	private int level = 1;
 	
-	protected boolean gameStarted = false;
+	private int scoreP1 = 0;
+	private int scoreP2 = 0;
+	
+	private boolean gameStarted = false;
+	
+	/**
+	 * Obstacles and powerUp
+	 */
+	private boolean obstacles = false;
+	//private final int defaultObstaclesOnScene = 0;
+	
+	//private int obstaclesOnScene = defaultObstaclesOnScene;
 
+	public GameModel() {
+		obstaclesModel = new ObstaclesModel((WIDTH-obstaclesFieldWIDTH)/2, 0, obstaclesFieldWIDTH, obstaclesFieldHEIGHT);
+	}
 	
-	
+	/**
+	 * @return the obstacles
+	 */
+	public boolean isObstacles() {
+		return obstacles;
+	}
+
+	/**
+	 * @param obstacles the obstacles to set
+	 */
+	public void setObstacles(boolean obstacles) {
+		this.obstacles = obstacles;
+	}
+
+//	/**
+//	 * @return the obstaclesOnScene
+//	 */
+//	public int getObstaclesOnScene() {
+//		return obstaclesOnScene;
+//	}
+//
+//	/**
+//	 * @param obstaclesOnScene the obstaclesOnScene to set
+//	 */
+//	public void setObstaclesOnScene(int obstaclesOnScene) {
+//		this.obstaclesOnScene = obstaclesOnScene;
+//	}
+//
+//	/**
+//	 * @return the defaultObstaclesOnScene
+//	 */
+//	public int getDefaultObstaclesOnScene() {
+//		return defaultObstaclesOnScene;
+//	}
+
+	/**
+	 * @return the obstaclesModel
+	 */
+	public ObstaclesModel getObstaclesModel() {
+		return obstaclesModel;
+	}
+
 	/**
 	 * @return the width
 	 */
@@ -357,5 +427,61 @@ public class GameModel {
 	public void setGameStarted(boolean gameStarted) {
 		this.gameStarted = gameStarted;
 	}
-		
+
+	/**
+	 * @return the defaultPlayerWidth
+	 */
+	public int getDefaultPlayerWidth() {
+		return defaultPlayerWidth;
+	}
+
+	/**
+	 * @return the defaultPlayerHeight
+	 */
+	public int getDefaultPlayerHeight() {
+		return defaultPlayerHeight;
+	}
+
+	/**
+	 * @return the defaultPlayerSpeed
+	 */
+	public double getDefaultPlayerSpeed() {
+		return defaultPlayerSpeed;
+	}
+
+	/**
+	 * @return the defaultBallSpeedX
+	 */
+	public double getDefaultBallSpeedX() {
+		return defaultBallSpeedX;
+	}
+
+	/**
+	 * @return the defaultBallSpeedY
+	 */
+	public double getDefaultBallSpeedY() {
+		return defaultBallSpeedY;
+	}
+
+	/**
+	 * @return the defaultBallRadius
+	 */
+	public int getDefaultBallRadius() {
+		return defaultBallRadius;
+	}
+
+	/**
+	 * @return the level
+	 */
+	public int getLevel() {
+		return level;
+	}
+
+	/**
+	 * @param level the level to set
+	 */
+	public void setLevel(int level) {
+		this.level = level;
+	}
 }
+

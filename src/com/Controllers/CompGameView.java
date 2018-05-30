@@ -8,7 +8,6 @@ import com.Scens.PongScens;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -21,28 +20,18 @@ import javafx.util.Duration;
  *
  */
 public class CompGameView extends GameView implements PongScens  {
-	private int level;
 	private ViewManager manager = ViewManager.INSTANCE;
 	
 	public CompGameView(GameModel model, GameController controller, ViewManager.Level level) {
 		super(model, controller);
 		if(level == manager.getLevel1Level())
-			this.level = 1;
+			controller.setLevel1();
 		if(level == manager.getLevel2Level())
-			this.level = 2;
+			controller.setLevel2();
 	}
-	
-	
 
 	@Override
 	public int createScene() {
-		canvas = new Canvas(GameModel.WIDTH, GameModel.HEIGHT);
-		gc = canvas.getGraphicsContext2D();
-		if(level == 1)
-			controller.setLevel1();
-		else if(level == 2)
-			controller.setLevel1();
-
 		Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), 
 				e -> run(gc)));
 		tl.setCycleCount(Timeline.INDEFINITE);
