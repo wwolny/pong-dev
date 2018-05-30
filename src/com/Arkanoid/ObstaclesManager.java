@@ -87,7 +87,7 @@ public class ObstaclesManager {
 	public void checkCollision(int heightId, int widthId) {
 		if(gameController.getBallX()+gameController.getBallRadius() > calculateX(widthId) 
 			&& gameController.getBallX() < calculateX(widthId)+model.getObstacleWidth()
-			&& gameController.getBallY()+2*gameController.getBallRadius() > calculateY(heightId) 
+			&& gameController.getBallY() > calculateY(heightId) 
 			&& gameController.getBallY() < calculateY(widthId)+model.getObstacleHeight()) {
 				gameController.changeBallDirection();
 				destroyObstacle(heightId, widthId);

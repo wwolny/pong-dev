@@ -8,7 +8,7 @@ package com.Arkanoid;
  *
  */
 public class ObstaclesModel {
-	private final int obstaclesMapWidth = 5;
+	private final int obstaclesMapWidth = 3;
 	private final int obstaclesMapHeight = 5;
 	private int obstaclesMap[][];
 	

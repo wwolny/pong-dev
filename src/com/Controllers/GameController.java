@@ -96,7 +96,7 @@ public class GameController {
 				manager.closePopUpWindow();
 				setDefaultValues();
 			}
-			//setObstacles();
+			setObstacles();
 		}
 	}
 	
