@@ -24,6 +24,9 @@ import javafx.scene.layout.VBox;
  *
  */
 public class CompChooseScene extends Scene implements PongScens{
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
+	
 	private static final int MAXROWS = 5;
 	private int nxtRow = -1; 
 
@@ -84,7 +87,7 @@ public class CompChooseScene extends Scene implements PongScens{
 		Level1Btn.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				manager.changeScene("Level1");
+				manager.changeScene(manager.getLevel1Scene());
 			}
 		});
 	}
@@ -95,7 +98,7 @@ public class CompChooseScene extends Scene implements PongScens{
 		Level2Btn.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				manager.changeScene("Level2");
+				manager.changeScene(manager.getLevel2Scene());
 			}
 		});
 	}
@@ -111,7 +114,7 @@ public class CompChooseScene extends Scene implements PongScens{
 		BackBtn.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				manager.changeScene("Menu");
+				manager.changeScene(manager.getMenu());
 			}
 		});
 	}

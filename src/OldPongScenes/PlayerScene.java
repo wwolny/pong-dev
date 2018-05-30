@@ -1,10 +1,11 @@
 /**
  * Pong application.
  */
-package com.Scens;
+package OldPongScenes;
 
 import com.PongElements.Ball;
 import com.PongElements.Paddle;
+import com.Scens.PongScens;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -21,6 +22,11 @@ import javafx.util.Duration;
  *
  */
 public class PlayerScene extends GameAbstractScene implements PongScens{	
+	private static final int UP = 1;
+	private static final int DOWN = -1;
+	private static final int STAY = 0;
+	private int direction1 = 0;
+	private int direction2 = 0;
 	/**
 	 * Method constructing the screen.
 	 * Needs to be called in the ViewManager.
@@ -37,18 +43,35 @@ public class PlayerScene extends GameAbstractScene implements PongScens{
 		
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 			if(key.getCode() == KeyCode.W) {
-				player1.moveUp();
+				direction1 = UP;
 			}
+		});
+		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 			if(key.getCode() == KeyCode.S) {
-				player1.moveDown();
+				direction1 = DOWN;
 			}
+		});
+		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 			if(key.getCode() == KeyCode.UP) {
-				player2.moveUp();
+				direction2 = UP;
 			}
+		});
+		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 			if(key.getCode() == KeyCode.DOWN) {
-				player2.moveDown();
-			}
-			
+				direction2 = DOWN;
+			}	
+		});
+		
+		this.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
+			if(key.getCode() == KeyCode.S || key.getCode() == KeyCode.W) {
+				direction1 = STAY;
+			}	
+		});
+		
+		this.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
+			if(key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP) {
+				direction2 = STAY;
+			}	
 		});
 		
 		escapeListner();
@@ -67,6 +90,8 @@ public class PlayerScene extends GameAbstractScene implements PongScens{
 	 */
 	protected void run(GraphicsContext gc) {
 		setScene();
+		player1.move(direction1);
+		player2.move(direction2);
 		player1.update(gc);
 		player2.update(gc);
 	}

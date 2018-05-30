@@ -11,9 +11,6 @@ import com.ViewManager;
  *
  */
 public interface PongScens {
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 600;
-	
 	/**
 	 * Instances of the both ViewManager and Settings manager.
 	 */

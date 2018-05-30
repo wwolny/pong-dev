@@ -44,21 +44,12 @@ public class Paddle {
 		this.y = this.startHeight/2 - this.height/2;
 	}
 	
-	/**
-	 * Move paddle up.
-	 */
-	public void moveUp() {
-		if(y > 0) {
-			y -=5*speed;
+	public void move(int way) {
+		if(y > 0 && way >0) {
+			y+=-5*speed*way;
 		}
-	}
-	
-	/**
-	 * Move paddle down.
-	 */
-	public void moveDown() {
-		if(y < startHeight - height) {
-			y +=5*speed;
+		else if(y < startHeight - height && way < 0) {
+			y+=-5*speed*way;
 		}
 	}
 	

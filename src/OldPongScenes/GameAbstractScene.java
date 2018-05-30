@@ -1,10 +1,11 @@
 /**
  * Pong application
  */
-package com.Scens;
+package OldPongScenes;
 
 import com.PongElements.Ball;
 import com.PongElements.Paddle;
+import com.Scens.PongScens;
 
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -22,6 +23,9 @@ import javafx.scene.text.TextAlignment;
  *
  */
 abstract class GameAbstractScene extends Scene implements PongScens {
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
+
 	protected int scoreP1 = 0;
 	protected int scoreP2 = 0;
 	protected boolean gameStarted = false;
@@ -45,7 +49,7 @@ abstract class GameAbstractScene extends Scene implements PongScens {
 	protected void escapeListner() {
 		this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 			if(key.getCode() == KeyCode.ESCAPE) {
-				manager.changeScene("Menu");
+				manager.changeScene(manager.getMenu());
 				gameStarted = false;
 				scoreP1 =0;
 				scoreP2 = 0;

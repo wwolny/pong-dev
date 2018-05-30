@@ -28,6 +28,9 @@ import javafx.scene.paint.Color;
  *
  */
 public class SettingsScene extends Scene implements PongScens{
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
+	
 	private Canvas canvas;
 	private GraphicsContext gc;
 	private VBox vbBox;
@@ -83,7 +86,7 @@ public class SettingsScene extends Scene implements PongScens{
 		BackBtn.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				manager.changeScene("Menu");
+				manager.changeScene(manager.getMenu());
 			}
 		});
 	}

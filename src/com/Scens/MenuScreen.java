@@ -24,12 +24,14 @@ import javafx.scene.layout.AnchorPane;
  */
 //TODO: using resources in jar file 
 public class MenuScreen extends Scene implements PongScens{
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
+	
 	private final static int MENU_BUTTONS_START_X = 100;
 	private final static int MENU_BUTTONS_START_Y = 150;
 	
 	private Canvas canvas;
 	private GraphicsContext gc;
-	
 	/**
 	 * The list of buttons.
 	 */
@@ -69,10 +71,9 @@ public class MenuScreen extends Scene implements PongScens{
 		PongButton PlayerPlayerBtn = new PongButton("vs. Player", sett.getFontSize());
 		addMenuButton(PlayerPlayerBtn);
 		PlayerPlayerBtn.setOnMousePressed(new EventHandler<MouseEvent>() {
-
 			@Override
 			public void handle(MouseEvent event) {
-				manager.changeScene("Player");
+				manager.changeScene(manager.getPlayer());
 			}
 		});
 	}
@@ -83,7 +84,7 @@ public class MenuScreen extends Scene implements PongScens{
 		PlayerComputerBtn.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				manager.changeScene("CompConf");
+				manager.changeScene(manager.getCompConf());
 			}
 		});
 	}
@@ -94,7 +95,7 @@ public class MenuScreen extends Scene implements PongScens{
 		SettingsBtn.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				manager.changeScene("Settings");
+				manager.changeScene(manager.getSettings());
 			}
 		});
 	}

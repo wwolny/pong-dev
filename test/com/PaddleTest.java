@@ -13,22 +13,6 @@ public class PaddleTest {
 		Paddle pad1 = new Paddle(1, 500, 600);
 		pad1.getHeight();		
 	}
-
-	@Test
-	public void testMoveUp() {
-		Paddle pad1 = new Paddle(1, 500, 600);
-		for(int i = 0; i <100; i++) {
-			pad1.moveUp();
-		}
-	}
-
-	@Test
-	public void testMoveDown() {
-		Paddle pad1 = new Paddle(1, 500, 600);
-		for(int i = 0; i <100; i++) {
-			pad1.moveDown();
-		}
-	}
 	
 	@Test
 	public void testGetPosX() {
