@@ -1,8 +1,9 @@
 /**
- * Pong application
+ * Pong applications
  */
 package com.PongElements;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -12,23 +13,39 @@ import javafx.scene.paint.Color;
  *
  */
 public class Obstacle {
-	private double width = 50;
-	private double height = 70;
+	private double posX;
+	private double posY;
+	private double width;
+	private double height;
 
 	/**
 	 * Constructor of the Obstacle.
 	 */
-	public Obstacle(GraphicsContext gc, int x, int y) {
-		gc.setFill(Color.YELLOW);
-		gc.fillRect(x, y, width, height);
+	public Obstacle(double x, double y, double width, double height) {
+		this.posX = x;
+		this.posY = y;
+		this.width = width;
+		this.height = height;		
 	}
 	
-	public Obstacle() {}
-	
-	public void update(GraphicsContext gc, int x, int y) {
-		gc.setFill(Color.YELLOW);
-		gc.fillRect(x, y, width, height);
+	public void setPos(double x, double y) {
+		this.posX = x;
+		this.posY = y;
 	}
+	
+	public void render(GraphicsContext gc) {
+		gc.setFill(Color.WHITE);
+		gc.fillRect(posX, posY, width, height);
+	}
+	
+	public Rectangle2D getBoundry() {
+		return new Rectangle2D(posX, posY, width, height);
+	}
+	
+	public boolean collision(Obstacle obst) {
+		return obst.getBoundry().intersects(this.getBoundry());
+	}
+	
 	
 	/**
 	 * @return the width

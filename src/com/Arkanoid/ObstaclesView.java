@@ -4,7 +4,6 @@
 package com.Arkanoid;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 /**
  * @author wojtek
@@ -34,8 +33,7 @@ public class ObstaclesView {
 	}
 	
 	public void drawObstacle(int heightId, int widthId) {
-		gc.setFill(Color.WHITE);
-		gc.fillRect(controller.calculateX(widthId), controller.calculateY(heightId), model.getObstacleWidth(), model.getObstacleHeight());		
+		controller.getObstalce(heightId, widthId).render(gc);
 	}
 	
 }

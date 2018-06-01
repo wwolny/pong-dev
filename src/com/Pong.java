@@ -6,7 +6,6 @@ package com;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-//TODO: Comments, Tests, Playervs.Player game, Player vs. Comp game, modification
 
 /**
  * Here starts the application.
