@@ -28,7 +28,7 @@ public class Obstacle {
 		this.height = height;		
 	}
 	
-	public void setPos(int x, int y) {
+	public void setPos(double x, double y) {
 		this.posX = x;
 		this.posY = y;
 	}

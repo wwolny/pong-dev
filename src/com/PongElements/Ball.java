@@ -42,7 +42,11 @@ public class Ball {
 	public boolean collision(Obstacle obst) {
 		return obst.getBoundry().intersects(this.getBoundry());
 	}
-
+	
+	public boolean collision(Paddle paddle) {
+		return paddle.getBoundry().intersects(this.getBoundry());
+	}
+	
 	/**
 	 * @return the radius
 	 */

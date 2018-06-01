@@ -8,6 +8,7 @@ import java.util.Random;
 import com.ViewManager;
 import com.Arkanoid.ObstaclesManager;
 import com.PongElements.Ball;
+import com.PongElements.Paddle;
 
 /**
  * @author wojtek
@@ -114,6 +115,7 @@ public class GameController {
 					-5*model.getPlayer1Speed()*model.getPlayer1Direction()
 					);
 		}
+		model.getPlayer1().setPos(model.getPlayer1X(), model.getPlayer1Y());
 	}
 	
 	
@@ -131,6 +133,7 @@ public class GameController {
 					-5*model.getPlayer2Speed()*model.getPlayer2Direction()
 					);
 		}
+		model.getPlayer2().setPos(model.getPlayer2X(), model.getPlayer2Y());
 	}
 	
 	public void moveBall() {
@@ -221,5 +224,13 @@ public class GameController {
 	
 	public Ball getBall() {
 		return model.getBall();
+	}
+	
+	public Paddle getPlayer1() {
+		return model.getPlayer1();
+	}
+	
+	public Paddle getPlayer2() {
+		return model.getPlayer2();
 	}
 }

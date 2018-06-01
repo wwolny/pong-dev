@@ -5,6 +5,7 @@ package com.Controllers;
 
 import com.Arkanoid.ObstaclesModel;
 import com.PongElements.Ball;
+import com.PongElements.Paddle;
 
 /**
  * 
@@ -21,8 +22,6 @@ public class GameModel {
 	private static final int UP = 1;
 	private static final int DOWN = -1;
 	private static final int STAY = 0;
-
-	private ObstaclesModel obstaclesModel;	
 	
 	private final int defaultPlayerWidth = 20;
 	private final int defaultPlayerHeight = 100;
@@ -54,6 +53,11 @@ public class GameModel {
 	private int ballRadius = defaultBallRadius;
 
 	private Ball ball;
+
+	private ObstaclesModel obstaclesModel;	
+	
+	private Paddle player1;
+	private Paddle player2;
 	
 	private int level = 1;
 	
@@ -69,13 +73,12 @@ public class GameModel {
 	 * Obstacles and powerUp
 	 */
 	private boolean obstacles = false;
-	//private final int defaultObstaclesOnScene = 0;
-	
-	//private int obstaclesOnScene = defaultObstaclesOnScene;
 
 	public GameModel() {
 		obstaclesModel = new ObstaclesModel((WIDTH-obstaclesFieldWIDTH)/2, 0, obstaclesFieldWIDTH, obstaclesFieldHEIGHT);
 		ball = new Ball(ballX, ballY, ballRadius);
+		player1 = new Paddle(player1X, player1Y, player1Width, player1Height);
+		player2 = new Paddle(player2X, player2Y, player2Width, player2Height);
 	}
 	
 	public Ball getBall() {
@@ -87,6 +90,20 @@ public class GameModel {
 	 */
 	public int getPlayToScore() {
 		return playToScore;
+	}
+	
+	/**
+	 * @return the player1
+	 */
+	public Paddle getPlayer1() {
+		return player1;
+	}
+
+	/**
+	 * @return the player2
+	 */
+	public Paddle getPlayer2() {
+		return player2;
 	}
 
 	/**
@@ -102,27 +119,6 @@ public class GameModel {
 	public void setObstacles(boolean obstacles) {
 		this.obstacles = obstacles;
 	}
-
-//	/**
-//	 * @return the obstaclesOnScene
-//	 */
-//	public int getObstaclesOnScene() {
-//		return obstaclesOnScene;
-//	}
-//
-//	/**
-//	 * @param obstaclesOnScene the obstaclesOnScene to set
-//	 */
-//	public void setObstaclesOnScene(int obstaclesOnScene) {
-//		this.obstaclesOnScene = obstaclesOnScene;
-//	}
-//
-//	/**
-//	 * @return the defaultObstaclesOnScene
-//	 */
-//	public int getDefaultObstaclesOnScene() {
-//		return defaultObstaclesOnScene;
-//	}
 
 	/**
 	 * @return the obstaclesModel

@@ -1,5 +1,5 @@
 /**
- * 
+ * Pong application
  */
 package com.Arkanoid;
 
@@ -66,7 +66,6 @@ public class ObstaclesManager {
 				}
 				else 
 					model.getObstaclesMap()[i][j] = 0;
-				//obstaclesMap[i][j] = (int)((Math.random()+0.5)%1);
 			}
 		}
 	}
@@ -113,13 +112,6 @@ public class ObstaclesManager {
 			gameController.changeBallDirection();
 			destroyObstacle(heightId, widthId);
 		}
-		/*if(gameController.getBallX()+gameController.getBallRadius() > calculateX(widthId) 
-			&& gameController.getBallX() < calculateX(widthId)+model.getObstacleWidth()
-			&& gameController.getBallY() > calculateY(heightId) 
-			&& gameController.getBallY() < calculateY(widthId)+model.getObstacleHeight()) {
-				gameController.changeBallDirection();
-				destroyObstacle(heightId, widthId);
-		}*/
 	}
 	
 	public void destroyObstacle(int heightId, int widthId) {

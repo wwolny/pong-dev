@@ -46,7 +46,8 @@ abstract class GameView extends Scene implements PongScens {
 	
 	protected void setScene() {
 		createBackground(gc);
-		if(model.getScoreP1() == model.getPlayToScore() || model.getScoreP2() == model.getPlayToScore()) {
+		if(model.getScoreP1() == model.getPlayToScore() 
+				|| model.getScoreP2() == model.getPlayToScore()) {
 			endGame();
 			model.setGameStarted(false);
 		}
@@ -54,7 +55,6 @@ abstract class GameView extends Scene implements PongScens {
 		gc.setFont(Font.font(25));
 		if(model.isGameStarted()) {
 			model.getBall().render(gc);
-			//updateBall();
 			if(model.isObstacles()) {
 				obstaclesView.createObstacles();
 			}
@@ -79,25 +79,18 @@ abstract class GameView extends Scene implements PongScens {
 	 * Draw Paddle 1
 	 */
 	public void updatePaddlePlayer1() {
-		gc.setFill(Color.WHITE);
-		gc.fillRect(model.getPlayer1X(), model.getPlayer1Y(), model.getPlayer1Width(), model.getPlayer1Height());
+		model.getPlayer1().render(gc);
+		//gc.setFill(Color.WHITE);
+		//gc.fillRect(model.getPlayer1X(), model.getPlayer1Y(), model.getPlayer1Width(), model.getPlayer1Height());
 	}
 	
 	/**
 	 * Draw Paddle 2
 	 */
 	public void updatePaddlePlayer2() {
-		gc.setFill(Color.WHITE);
-		gc.fillRect(model.getPlayer2X(), model.getPlayer2Y(), model.getPlayer2Width(), model.getPlayer2Height());
-	}
-	
-	/**
-	 * Draw ball
-	 */
-	protected void updateBall() {
-		gc.setFill(Color.WHITE);
-		gc.fillOval(model.getBallX(), model.getBallY(), 
-						model.getBallRadius(), model.getBallRadius());
+		model.getPlayer2().render(gc);
+//		gc.setFill(Color.WHITE);
+//		gc.fillRect(model.getPlayer2X(), model.getPlayer2Y(), model.getPlayer2Width(), model.getPlayer2Height());
 	}
 	
 	protected void endGame() {
